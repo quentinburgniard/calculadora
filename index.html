@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Load Materialize https://materializecss.com -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title>Form Builder</title>
+</head>
+
+<body>
+  <!-- Init Form Builder -->
+  <script>
+    axios.get('https://api.digitalleman.com/product-prices?reference_eq=true')
+    .then(function(result) {
+      var products = result.data.map(function(product) {
+        return product.product;
+      });
+      window.formBuilder = {};
+      formBuilder.debug = true;
+      formBuilder.config = {
+        form: {
+          name: 'Mesquinho',
+          version: '1.1.0',
+        },
+        plugins: [
+          'date',
+          'local-backup',
+          'prefill'
+        ],
+        fields: [
+          {
+            name: 'Produtos',
+            type: 'select',
+            options: products
+          },
+          {
+            name: 'Price',
+            type: 'number'
+          }
+        ]
+      }
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://form-builder.digitalleman.com/form-builder.js';    
+      document.head.appendChild(script);
+    })
+    .catch(err => console.log(err));
+  </script>
+  <!-- Add your HTML -->
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m10 l7 xl6">
+        <!-- Add From Builder wrapper -->
+        <form action="https://mesquinho-generator.casasogra.pt" id="form-builder"></form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Optional: Add Form Builder preview window -->
+  <div id="form-builder-preview" height="20px" width="20px"></div>
+</body>
+
+</html>
