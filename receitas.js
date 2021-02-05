@@ -5,7 +5,7 @@ theme.card = '\
   <div class="col s12 m6 l4 xl3">\
     <div class="card">\
       <div class="card-image waves-effect waves-block waves-light">\
-        <img class="activator" src="https://static.digitalleman.com/photo_profil_uqar_carre_e134bccb98.jpg">\
+        <img class="activator" src="https://static.digitalleman.com/calculadora/default.jpg">\
       </div>\
       <div class="card-content">\
         <span class="card-title activator grey-text text-darken-4"><%= recipe.name %><i class="material-icons right">room_service</i></span>\
